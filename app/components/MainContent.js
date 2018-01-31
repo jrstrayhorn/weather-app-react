@@ -15,8 +15,8 @@ function MainContent(props) {
             <div className="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
               <form className="form-inline" role="form">
                 <div className="form-group">
-                  <label className="sr-only" htmlFor="exampleInputEmail2">
-                    Email address
+                  <label className="sr-only" htmlFor="InputCityState">
+                    City and State
                   </label>
                   <input
                     type="email"
