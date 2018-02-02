@@ -28,7 +28,7 @@ class Forecast extends React.Component {
             };
           });
         }
-        console.log(results);
+
         this.setState(function() {
           return {
             error: null,
