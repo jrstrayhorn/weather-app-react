@@ -17,25 +17,25 @@ class Forecast extends React.Component {
       error: null
     };
   }
-  getWeatherData(location) {
-    api.getLocationData(location).then(results => {
-      if (results === null) {
-        return this.setState(() => ({
-          error: 'There was an error with your request, please try again.',
-          loading: false
-        }));
-      }
+  async getWeatherData(location) {
+    const results = await api.getWeatherData(location);
 
-      const { city, state, temp, description } = results;
-      this.setState(() => ({
-        error: null,
-        loading: false,
-        city,
-        state,
-        temp,
-        description
+    if (results === null) {
+      return this.setState(() => ({
+        error: 'There was an error with your request, please try again.',
+        loading: false
       }));
-    });
+    }
+
+    const { city, state, temp, description } = results;
+    this.setState(() => ({
+      error: null,
+      loading: false,
+      city,
+      state,
+      temp,
+      description
+    }));
   }
   componentDidMount() {
     const { location: { search } } = this.props;
