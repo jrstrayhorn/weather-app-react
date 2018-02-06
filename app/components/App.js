@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactRouter = require('react-router-dom');
-var Router = ReactRouter.BrowserRouter;
-var Route = ReactRouter.Route;
-var Switch = ReactRouter.Switch;
+const React = require('react');
+const ReactRouter = require('react-router-dom');
+const Router = ReactRouter.BrowserRouter;
+const Route = ReactRouter.Route;
+const Switch = ReactRouter.Switch;
 
-var Nav = require('./Nav');
+const Nav = require('./Nav');
 
-var Home = require('./Home');
-var Forecast = require('./Forecast');
+const Home = require('./Home');
+const Forecast = require('./Forecast');
 
 function App() {
   return (
@@ -17,11 +17,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/forecast" component={Forecast} />
-          <Route
-            render={function() {
-              return <p>Not Found</p>;
-            }}
-          />
+          <Route render={() => <p>Not Found</p>} />
         </Switch>
       </div>
     </Router>

@@ -1,9 +1,9 @@
-var React = require('react');
+const React = require('react');
 
-var queryString = require('query-string');
-var MainContent = require('./MainContent');
+const queryString = require('query-string');
+const MainContent = require('./MainContent');
 
-var api = require('../utils/api');
+const api = require('../utils/api');
 
 class Forecast extends React.Component {
   constructor(props) {
@@ -18,49 +18,39 @@ class Forecast extends React.Component {
     };
   }
   getWeatherData(location) {
-    api.getLocationData(location).then(
-      function(results) {
-        if (results === null) {
-          return this.setState(function() {
-            return {
-              error: 'There was an error with your request, please try again.',
-              loading: false
-            };
-          });
-        }
+    api.getLocationData(location).then(results => {
+      if (results === null) {
+        return this.setState(() => ({
+          error: 'There was an error with your request, please try again.',
+          loading: false
+        }));
+      }
 
-        this.setState(function() {
-          return {
-            error: null,
-            loading: false,
-            city: results.city,
-            state: results.state,
-            temp: results.temp,
-            description: results.description
-          };
-        });
-      }.bind(this)
-    );
+      const { city, state, temp, description } = results;
+      this.setState(() => ({
+        error: null,
+        loading: false,
+        city,
+        state,
+        temp,
+        description
+      }));
+    });
   }
   componentDidMount() {
-    var params = queryString.parse(this.props.location.search);
-    this.getWeatherData(params.location);
+    const { location: { search } } = this.props;
+    this.getWeatherData(queryString.parse(search).location);
   }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate({ location: { search: prevSearch } }) {
     // check to see if query string parameters changed
     // in order to do a re-render
-    if (prevProps.location.search !== this.props.location.search) {
-      var params = queryString.parse(this.props.location.search);
-      this.getWeatherData(params.location);
+    const { location: { search } } = this.props;
+    if (prevSearch !== search) {
+      this.getWeatherData(queryString.parse(search).location);
     }
   }
   render() {
-    var loading = this.state.loading;
-    var error = this.state.error;
-    var city = this.state.city;
-    var state = this.state.state;
-    var temp = this.state.temp;
-    var description = this.state.description;
+    const { loading, error, city, state, temp, description } = this.state;
 
     if (loading) {
       return <MainContent headline="Loading..." tagline="" showForm={false} />;
@@ -71,8 +61,8 @@ class Forecast extends React.Component {
     }
     return (
       <MainContent
-        headline={city + ', ' + state}
-        tagline={'The weather is ' + temp + '\xB0 F and ' + description + '!'}
+        headline={`${city}, ${state}`}
+        tagline={`The weather is ${temp}\xB0 F and ${description}!`}
         showForm={true}
       />
     );

@@ -1,7 +1,7 @@
-var React = require('react');
-var bgImage = require('../images/video_bg.jpg');
-var PropTypes = require('prop-types');
-var Link = require('react-router-dom').Link;
+const React = require('react');
+const bgImage = require('../images/video_bg.jpg');
+const PropTypes = require('prop-types');
+const Link = require('react-router-dom').Link;
 
 class LocationInput extends React.Component {
   constructor(props) {
@@ -14,9 +14,7 @@ class LocationInput extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    var value = event.target.value;
-
+  handleChange({ target: { value } }) {
     this.setState(function() {
       return {
         location: value
@@ -25,6 +23,7 @@ class LocationInput extends React.Component {
   }
 
   render() {
+    const { location } = this.state;
     return (
       <div className="row">
         <div className="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
@@ -39,18 +38,18 @@ class LocationInput extends React.Component {
                 placeholder="Your city/state here..."
                 id="location"
                 autoComplete="off"
-                value={this.state.location}
+                value={location}
                 onChange={this.handleChange}
               />
             </div>
 
-            {this.state.location && (
+            {location && (
               <Link
                 className="btn btn-danger btn-fill"
                 style={{ marginLeft: '4px' }}
                 to={{
                   pathname: '/forecast',
-                  search: '?location=' + this.state.location
+                  search: `?location=${location}`
                 }}
               >
                 Get Weather
@@ -63,15 +62,15 @@ class LocationInput extends React.Component {
   }
 }
 
-function MainContent(props) {
+function MainContent({ headline, tagline, showForm }) {
   return (
     <div className="main" style={{ backgroundImage: `url('./${bgImage}')` }}>
       <div className="cover blue" data-color="blue" />
       <div className="container">
-        <h1 className="logo cursive">{props.headline}</h1>
+        <h1 className="logo cursive">{headline}</h1>
         <div className="content main-area">
-          <h4 className="motto">{props.tagline}</h4>
-          {props.showForm && <LocationInput />}
+          <h4 className="motto">{tagline}</h4>
+          {showForm && <LocationInput />}
         </div>
       </div>
       <div className="footer">

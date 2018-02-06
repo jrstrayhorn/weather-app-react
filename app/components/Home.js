@@ -1,6 +1,6 @@
-var React = require('react');
+const React = require('react');
 
-var MainContent = require('./MainContent');
+const MainContent = require('./MainContent');
 
 function Home(props) {
   return (
