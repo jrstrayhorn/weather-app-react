@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 function handleError(error) {
   console.warn(error);
@@ -46,6 +46,6 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-module.exports = {
+export default {
   getLocationData: getWeatherData
 };

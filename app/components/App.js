@@ -1,13 +1,9 @@
-const React = require('react');
-const ReactRouter = require('react-router-dom');
-const Router = ReactRouter.BrowserRouter;
-const Route = ReactRouter.Route;
-const Switch = ReactRouter.Switch;
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Nav from './Nav';
 
-const Nav = require('./Nav');
-
-const Home = require('./Home');
-const Forecast = require('./Forecast');
+import Home from './Home';
+import Forecast from './Forecast';
 
 function App() {
   return (
@@ -24,4 +20,4 @@ function App() {
   );
 }
 
-module.exports = App;
+export default App;

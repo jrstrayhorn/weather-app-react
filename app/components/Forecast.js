@@ -1,9 +1,9 @@
-const React = require('react');
+import React from 'react';
 
-const queryString = require('query-string');
-const MainContent = require('./MainContent');
+import queryString from 'query-string';
+import MainContent from './MainContent';
 
-const api = require('../utils/api');
+import api from '../utils/api';
 
 class Forecast extends React.Component {
   constructor(props) {
@@ -69,4 +69,4 @@ class Forecast extends React.Component {
   }
 }
 
-module.exports = Forecast;
+export default Forecast;

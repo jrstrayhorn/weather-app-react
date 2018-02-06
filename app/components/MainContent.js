@@ -1,7 +1,7 @@
-const React = require('react');
-const bgImage = require('../images/video_bg.jpg');
-const PropTypes = require('prop-types');
-const Link = require('react-router-dom').Link;
+import React from 'react';
+import bgImage from '../images/video_bg.jpg';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class LocationInput extends React.Component {
   constructor(props) {
@@ -89,4 +89,4 @@ MainContent.propTypes = {
   showForm: PropTypes.bool.isRequired
 };
 
-module.exports = MainContent;
+export default MainContent;

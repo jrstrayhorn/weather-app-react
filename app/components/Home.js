@@ -1,6 +1,6 @@
-const React = require('react');
+import React from 'react';
 
-const MainContent = require('./MainContent');
+import MainContent from './MainContent';
 
 function Home(props) {
   return (
@@ -13,4 +13,4 @@ function Home(props) {
   );
 }
 
-module.exports = Home;
+export default Home;

@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
-require('./index.css');
+import './index.css';
+import $ from 'jquery';
 
-var App = require('./components/App');
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-var $ = require('jquery');
+import App from './components/App';
 
 window.jQuery = $;
 require('../node_modules/bootstrap/dist/js/bootstrap.min.js');
